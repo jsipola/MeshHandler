@@ -1,0 +1,7 @@
+/home/juuso/python/UE4Visualizer/tinyobjloader-master/CMakeFiles/install.dir
+/home/juuso/python/UE4Visualizer/tinyobjloader-master/CMakeFiles/list_install_components.dir
+/home/juuso/python/UE4Visualizer/tinyobjloader-master/CMakeFiles/rebuild_cache.dir
+/home/juuso/python/UE4Visualizer/tinyobjloader-master/CMakeFiles/tinyobjloader.dir
+/home/juuso/python/UE4Visualizer/tinyobjloader-master/CMakeFiles/install/strip.dir
+/home/juuso/python/UE4Visualizer/tinyobjloader-master/CMakeFiles/install/local.dir
+/home/juuso/python/UE4Visualizer/tinyobjloader-master/CMakeFiles/edit_cache.dir

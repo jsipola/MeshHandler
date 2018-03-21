@@ -1,0 +1,7 @@
+# file for the virtual environment
+
+# command file location
+ld ;rock.txt ;300 ;0 ;0
+ld ;rock.txt ;-300 ;0 ;0
+
+

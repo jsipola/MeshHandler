@@ -1,0 +1,26 @@
+TODO:
+
+
+1. Thread for listening  and receiving data in specified format
+2. decompress data
+3. use RMC plugin to make and update meshes
+4. 
+
+
+- how many meshes are necessary?
+- tcp/udp for connection?
+- raycasting?
+- infiniTAM? (https://github.com/victorprad/InfiniTAM)  
+- moving data between BP and C++?
+- polyvox (http://www.volumesoffun.com/)
+- marching cubes
+
+data format:
+    -points/vertices
+    -triangles
+    -normals?
+    -colors
+    -other?
+
+RMC: https://github.com/Koderz/RuntimeMeshComponent
+ 
