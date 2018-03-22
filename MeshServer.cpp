@@ -155,6 +155,7 @@ int main(int argc, char *argv[]){
     vector<float> texcoords_alt;
     vector<float> triangles;
     vector<float> pos;
+    vector<float> material;
 
     cout << "Verts: " << verts.size() / 3 << endl;
     cout << "Normals: " << normals.size() / 3 << endl;
@@ -183,11 +184,30 @@ int main(int argc, char *argv[]){
         cout << "Number of indices: " << shapes[i].mesh.indices.size() << endl << endl; 
         for (size_t x=0; x < shapes[i].mesh.indices.size();x++) {
             triangles.push_back(shapes[i].mesh.indices[x].vertex_index); 
-       }
-       writeMeshData(ff, triangles, "", "tri");
+        }
+        if (materials.size() > 0) {
+            material.push_back(materials[i].ambient[0]);
+            material.push_back(materials[i].ambient[1]);
+            material.push_back(materials[i].ambient[2]);
+            material.push_back(materials[i].diffuse[0]);
+            material.push_back(materials[i].diffuse[1]);
+            material.push_back(materials[i].diffuse[2]);
+            material.push_back(materials[i].specular[0]);
+            material.push_back(materials[i].specular[1]);
+            material.push_back(materials[i].specular[2]);
+        }
+        writeMeshData(ff, triangles, "", "tri");
+        if (materials.size() > 0 && i < materials.size()){
+            stringstream ss;
+            string name =  materials[i].name.c_str() ;
+            ss << "m " << name;
+            string id = ss.str();
+            writeMeshData(ff, material, "", id);
+            material.clear();
+        }
         ff << "s ;" << endl;
         triangles.clear();
-   }
+    }
 
     unique_lock<mutex> mlock(data.mutex_t);
     uint8_t siz = verts.size();
