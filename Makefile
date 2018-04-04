@@ -1,6 +1,6 @@
 CC = g++
 FLAGS = -std=c++11 -pthread
-FILES = MeshServer.cpp MeshClass.cpp
+FILES = MeshServer.cpp 
 EXE = meshserver
 
 build: $(FILES)
