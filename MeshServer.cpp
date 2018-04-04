@@ -6,43 +6,6 @@ struct DataQueue_t {
     mutex mutex_t;
 };
 
-int findLine(fstream &stream, string tofind){
-    string line;
-    int counter = 0;
-    stream.seekg(0);
-    while (getline(stream, line)) {
-        if (line.compare(tofind) == 0) return counter;
-        else ++counter;
-    }
-    return -1;
-}
-
-void writeBin(MeshClass mesh){
-    ofstream file_obj;
-    file_obj.open("mesh_data.txt", ios::out);
-
-    file_obj.write((char*)&mesh, sizeof(mesh));
-    
-    file_obj.close();
-   
-}
-
-void readBin(){
-    ifstream file_obj;
-    file_obj.open("mesh_data.txt", ios::in | ios::binary);
-    MeshClass mesh;
-    std::string name;
-    //file_obj.read((char*)&mesh, sizeof(mesh));
-    
-//    while (!file_obj.eof()) {
-    //    name = mesh.getId();
-        printf("asd\n"); 
-//        file_obj.read((char*)&mesh, sizeof(mesh));
-//    }
-
-    file_obj.close();
-}
-
 void writeMeshData(fstream &dataFile, vector<float> vectorData, string name = "", string param = ""){
     //kirjoittaa fileen?
     //joka meshille erillinen file?
@@ -135,17 +98,6 @@ int main(int argc, char *argv[]){
 
     if (!ret) exit(1);
 
-    MeshClass mesh;
-    //mesh.verts = attr.vertices;
-    string id = "cornell box";    
-    mesh.setId(id);
-    mesh.setVerts(attr.vertices);
-    mesh.setNormals(attr.normals);
-    mesh.setTexcoords(attr.texcoords);
-
-    //writeBin(mesh);
-    //readBin();
-    
     char* num;
     vector<float> verts = attr.vertices;
     vector<float> verts_alt;
@@ -167,7 +119,7 @@ int main(int argc, char *argv[]){
     strcat(msg, ".txt");
     puts(msg);
     
-    ff.open(msg);
+    ff.open(msg, fstream::in | fstream::out | fstream::trunc);
     pos.push_back(300); // x
     pos.push_back(0); // y
     pos.push_back(0); // z
@@ -181,7 +133,7 @@ int main(int argc, char *argv[]){
     int counter = 0;
     for (size_t i=0; i < shapes.size(); i++) {
         size_t index = 0;
-        cout << "Number of indices: " << shapes[i].mesh.indices.size() << endl << endl; 
+        cout << "Number of triangles: " << shapes[i].mesh.indices.size() / 3 << endl << endl;
         for (size_t x=0; x < shapes[i].mesh.indices.size();x++) {
             triangles.push_back(shapes[i].mesh.indices[x].vertex_index); 
         }
@@ -200,7 +152,7 @@ int main(int argc, char *argv[]){
         if (materials.size() > 0 && i < materials.size()){
             stringstream ss;
             string name =  materials[i].name.c_str() ;
-            ss << "m " << name;
+            ss << "m ;" << name;
             string id = ss.str();
             writeMeshData(ff, material, "", id);
             material.clear();
@@ -218,8 +170,9 @@ int main(int argc, char *argv[]){
     mlock.unlock();
 
 //    cout << verts_alt.size() / 3 << endl;
-    cout << "Triangles: " << triangles.size() / 3  << endl;
-    cout << "Verts alt: " << verts_alt.size() / 3 << endl;
+//    cout << "Triangles: " << triangles.size() / 3  << endl;
+//    cout << "Verts alt: " << verts_alt.size() / 3 << endl;
+/*
     fstream filee;
     //filee.open("mesh_cornell.txt");
     filee.open("./models/mesh_cube.txt");//, ios::app);
@@ -230,7 +183,7 @@ int main(int argc, char *argv[]){
     writeMeshData(filee, triangles, "", "tri");
     
     filee.close();
-
+*/
 //    string name = "cornell";
 //    writeMeshData(ff, verts, "", "v");
 //    writeMeshData(ff, normals_alt, "", "n"); 

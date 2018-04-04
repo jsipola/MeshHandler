@@ -1,6 +1,5 @@
 #define TINYOBJLOADER_IMPLEMENTATION
 #include "./tinyobjloader-master/tiny_obj_loader.h"
-#include "MeshClass.h"
 #include <iostream>
 #include <stdio.h>
 #include <unistd.h>

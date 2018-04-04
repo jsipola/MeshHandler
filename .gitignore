@@ -1,2 +1,5 @@
 *.swp
+environment.txt
+mesh_data.txt
 MeshClass.*
+meshserver.exe
